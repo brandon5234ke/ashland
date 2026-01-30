@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashland Organisation</title>
+
+<style>
+:root {
+  --primary: #0b1220;
+  --accent: #cfa14a;
+  --bg: #ffffff;
+  --section-bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #9ca3af;
+  --hero-image: url("header.png");
+
+  --radius-lg: 22px;
+  --shadow-soft: 0 12px 30px rgba(0,0,0,0.06);
+  --shadow-hover: 0 24px 60px rgba(0,0,0,0.14);
+  --transition: all 0.35s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ================= HEADER ================= */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background: rgba(2,6,23,0.88);
+  backdrop-filter: blur(8px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo img { height: 40px; }
+
+.logo span {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+nav a {
+  color: #e5e7eb;
+  margin-left: 1.6rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: var(--transition);
+}
+
+nav a:hover::after { width: 100%; }
+
+.donate-btn {
+  border: 1px solid var(--accent);
+  padding: 0.45rem 1.4rem;
+  border-radius: 30px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.donate-btn:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+/* ================= HERO ================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    var(--hero-image);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 0 1.5rem;
+}
+
+.hero h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+/* ================= SECTIONS ================= */
+section { padding: 5.5rem 1.5rem; }
+
+.section-wrap {
+  max-width: 1100px;
+  margin: auto;
+}
+
+section h3 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+/* ================= ABOUT ================= */
+.about-card {
+  background: var(--card);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.read-more {
+  margin-top: 1.8rem;
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  padding: 0.6rem 1.6rem;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 10px 25px rgba(207,161,74,0.35);
+}
+
+.read-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(207,161,74,0.5);
+}
+
+.more-content {
+  margin-top: 2rem;
+  display: none;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 2rem;
+}
+
+/* ================= PROGRAMS ================= */
+.programs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.program {
+  background: var(--card);
+  padding: 2.4rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+}
+
+.program:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ================= GALLERY ================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(2,6,23,0.75), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.2rem;
+  color: #fff;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: var(--transition);
+}
+
+.gallery-item:hover img { transform: scale(1.1); }
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item:hover .gallery-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: #020617;
+  color: #e5e7eb;
+  padding: 4rem 1.5rem 2rem;
+}
+
+.footer-wrap {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+.footer-links a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a:hover { color: var(--accent); }
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ================= MOBILE MENU ================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  width: 26px;
+  height: 3px;
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  nav {
+    position: absolute;
+    top: 100%;
+    right: 1.2rem;
+    width: calc(100% - 2.4rem);
+    background: #020617;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    flex-direction: column;
+    padding: 0.8rem 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  nav.open {
+    max-height: 420px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  nav a {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .donate-btn {
+    margin: 1rem;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-weight: 700;
+  }
+
+  .menu-toggle { display: flex; }
+}
+.newsletter-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 0.6rem 1.6rem;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 10px 25px rgba(207,161,74,0.35);
+}
+
+.newsletter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(207,161,74,0.5);
+}
+html {
+  scroll-behavior: smooth;
+}
+.subscribe-btn {
+   border: none;
+  padding: 0.45rem 1.4rem;
+  border-radius: 30px;
+  color: var(--accent);
+  font-weight: 800;;
+
+}
+
+
+
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.png">
+    <span>Ashland Organisation</span>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <nav id="mobileNav">
+    <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#gallery">Gallery</a>
+    <a href="donate.html" class="donate-btn">Donate</a>
+    <a href="newsletter.html" class="donate-btn">subscribe to newsletter</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>
+    <h2>Empowering Slum Children Through Action</h2>
+    <p>Education • Sports • Mentorship</p>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-wrap">
+    <h3>About Ashland</h3>
+    <div class="about-card">
+      <p>Ashland Organization is a registered community-based non-profit in Kibra, Nairobi.</p>
+      <span class="read-more" onclick="toggleMore()">Read More</span>
+
+      <div class="more-content" id="moreContent">
+        <p>We empower children through sports, education, and mentorship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="programs" style="background:var(--section-bg)">
+  <div class="section-wrap">
+    <h3>Our Programs</h3>
+    <div class="programs">
+      <div class="program"><h4>Feeding Program</h4><p>Nutritious meals for growth.</p></div>
+      <div class="program"><h4>Soccer Program</h4><p>Discipline and teamwork.</p></div>
+      <div class="program"><h4>Athletics Program</h4><p>Fitness and confidence.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-wrap">
+    <h3>Gallery</h3>
+    <div class="gallery">
+      <div class="gallery-item"><img src="children.jpeg"><div class="gallery-caption">Community Outreach</div></div>
+      <div class="gallery-item"><img src="soccer.jpeg"><div class="gallery-caption">Soccer Program</div></div>
+      <div class="gallery-item"><img src="athletics.jpeg"><div class="gallery-caption">Athletics Training</div></div>
+      <div class="gallery-item"><img src="outreach.jpg"><div class="gallery-caption">Outreach Events</div></div>
+      <div class="gallery-item"><img src="cooking.jpg"><div class="gallery-caption">Feeding Program</div></div>
+      <div class="gallery-item"><img src="1.jpeg"><div class="gallery-caption">Farming Program</div></div>
+      <div class="gallery-item"><img src="2.jpeg"><div class="gallery-caption">Minor Feeding Program</div></div>
+      <div class="gallery-item"><img src="3.jpeg"><div class="gallery-caption">Community Welfare</div></div>
+      <div class="gallery-item"><img src="6.jpeg"><div class="gallery-caption">Seedling Farming</div></div>
+      <div class="gallery-item"><img src="7.jpeg"><div class="gallery-caption">Support for the Unfortunate</div></div>
+      <div class="gallery-item"><img src="9.jpeg"><div class="gallery-caption">Children Feeding Program</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <div>
+      <img src="logo.png" height="45">
+      <p>Empowering communities through action.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#gallery">Gallery</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Contact</h4>
+      <a href="tel:0792050119">📞 0792050119</a>
+      <a href="mailto:ashlandorganization@gmail.com">📧 ashlandorganization@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-links">
+  <h4>Newsletter</h4>
+  <p style="color: var(--muted); margin-bottom: 0.8rem;">
+    Get updates on our programs and impact.
+  </p>
+  
+  <a href="newsletter.html" class="subscribe-btn">Subscribe</a>
+
+</div>
+
+
+  <div class="footer-bottom">
+    © 2018–2026 Ashland Organisation · All Rights Reserved
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("mobileNav").classList.toggle("open");
+}
+
+function toggleMore() {
+  const content = document.getElementById("moreContent");
+  const btn = document.querySelector(".read-more");
+  content.style.display =
+    content.style.display === "block" ? "none" : "block";
+  btn.textContent =
+    btn.textContent === "Read More" ? "Read Less" : "Read More";
+}
+</script>
+
+</body>
+</html>

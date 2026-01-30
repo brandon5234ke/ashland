@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subscribe to Newsletter | Ashland Organisation</title>
+
+<style>
+:root {
+  --primary: #0b1220;
+  --accent: #cfa14a;
+  --bg: #ffffff;
+  --section-bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #9ca3af;
+
+  --radius-lg: 22px;
+  --shadow-soft: 0 12px 30px rgba(0,0,0,0.06);
+  --transition: all 0.35s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: var(--section-bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* ================= CARD ================= */
+.newsletter-wrapper {
+  width: 100%;
+  max-width: 720px;
+}
+
+.newsletter-card {
+  background: var(--card);
+  padding: 3.8rem 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.logo img {
+  height: 42px;
+}
+
+.logo span {
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.newsletter-card h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(1.9rem, 4vw, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+.newsletter-card p {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* ================= FORM ================= */
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.newsletter-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.newsletter-inputs input {
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.newsletter-inputs input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(207,161,74,0.25);
+}
+
+.newsletter-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 10px 25px rgba(207,161,74,0.35);
+}
+
+.newsletter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(207,161,74,0.5);
+}
+
+.back-link {
+  margin-top: 2.2rem;
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 680px) {
+  .newsletter-card {
+    padding: 2.8rem 2rem;
+  }
+
+  .newsletter-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="newsletter-wrapper">
+  <div class="newsletter-card">
+
+    <div class="logo">
+      <img src="logo.png" alt="Ashland Organisation">
+      <span>Ashland Organisation</span>
+    </div>
+
+    <h1>Join Our Newsletter</h1>
+    <p>
+      Get updates on our programs, community impact, events,
+      and opportunities to support our mission.
+    </p>
+
+    <form
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      class="newsletter-form"
+    >
+      <!-- Web3Forms -->
+      <input type="hidden" name="access_key" value="89d752bb-22ee-4ff2-8cdc-9391b89e524e">
+      <input type="hidden" name="subject" value="New Email Subscription">
+      <input type="hidden" name="message" value="New subscription request">
+
+      <div class="newsletter-inputs">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your full name"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+        />
+      </div>
+
+      <button type="submit" class="newsletter-btn">
+        Subscribe Now
+      </button>
+    </form>
+
+    <a href="index.html" class="back-link">
+      ← Back to Home
+    </a>
+
+  </div>
+</div>
+
+</body>
+</html>
